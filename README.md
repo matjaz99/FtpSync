@@ -1,14 +1,24 @@
 FtpSync
 =======
 
+---------------------------------------------------------------------
+About
+---------------------------------------------------------------------
+FtpSync monitors a directory and uploads changes to remote ftp location.
 
+
+
+---------------------------------------------------------------------
 Building
+---------------------------------------------------------------------
 
 Execute maven goal: clean package dependency:copy-dependencies verify
 
 
-Running
 
+---------------------------------------------------------------------
+Running
+---------------------------------------------------------------------
 Edit ftpsync.properties or make copy.
 
 Start FtpSync from command line: $ ./start.sh <properties>
