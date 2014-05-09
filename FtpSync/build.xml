@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="FtpSync" default="tar">
+	
+	<description>Ant buildfile</description>
+
+ 	<property name="src.dir" value="src" />
+	<property name="lib.dir" value="target/dependency" />
+	<property name="dist.dir" value="dist" />
+	
+	<target name="clean">
+		<mkdir dir="${dist.dir}" />
+		<delete dir="${dist.dir}/${ant.project.name}-${pom.version}" />
+	</target>
+	
+	<target name="tar" depends="clean">
+		<mkdir dir="${dist.dir}/${ant.project.name}-${pom.version}" />
+		<mkdir dir="${dist.dir}/${ant.project.name}-${pom.version}/lib" />
+		<echo file="${dist.dir}/${ant.project.name}-${pom.version}/lib/version.txt">${pom.version}</echo>
+		<mkdir dir="${dist.dir}/${ant.project.name}-${pom.version}/src" />
+				
+			<copy todir="${dist.dir}/${ant.project.name}-${pom.version}/lib">
+				<fileset dir="${lib.dir}">
+					<include name="**/*" />
+				</fileset>
+				<fileset dir="target">
+					<include name="${pom.artifactId}-${pom.version}.jar" />
+				</fileset>
+			</copy>
+		
+ 		<copy todir="${dist.dir}/${ant.project.name}-${pom.version}/src">
+ 						<fileset dir="${src.dir}">
+ 							<include name="**/*" />
+ 						</fileset>
+ 					</copy>
+			
+			<copy todir="${dist.dir}/${ant.project.name}-${pom.version}">
+				<fileset dir=".">
+					<include name="build.xml" />
+					<include name="pom.xml" />
+					<include name="start.sh" />
+					<include name="start.bat" />
+					<include name="ftpsync.properties" />
+					<include name="README.txt" />
+				</fileset>
+			</copy>
+			
+			<tar destfile="${dist.dir}/${ant.project.name}-${pom.version}.tar.gz" basedir="${dist.dir}" includes="${ant.project.name}-${pom.version}/**" compression="gzip" />
+			
+			<echo message="== building tar file successful ==" />
+		</target>
+	
+</project>
