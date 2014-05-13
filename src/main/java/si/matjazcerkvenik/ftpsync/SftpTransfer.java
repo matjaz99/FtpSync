@@ -10,6 +10,12 @@ import org.apache.commons.vfs2.Selectors;
 import org.apache.commons.vfs2.impl.StandardFileSystemManager;
 import org.apache.commons.vfs2.provider.sftp.SftpFileSystemConfigBuilder;
 
+/**
+ * SFTP client
+ * 
+ * @author cerkvenik
+ *
+ */
 public class SftpTransfer {
 
 	public static final String FTP_URL = "192.168.1.101/home/matjaz"; // ftp.xyz.com
